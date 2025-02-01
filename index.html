@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Dias</title>
+    <title>Calculadora de duração de estoque</title>
     <style>
         body {
-            font-family: Arial, Arial;
+            font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
         }
@@ -21,10 +21,14 @@
         .erro {
             color: red;
         }
+        .sinalizacao {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h2>Calculadora de Dias</h2>
+    <h2>Calculadora de duração de estoque</h2>
     <label for="dataInicio">Data de Início:</label>
     <input type="date" id="dataInicio">
     <br>
@@ -48,7 +52,11 @@
             const data = new Date(dataInicio);
             data.setDate(data.getDate() + duracao);
             
-            resultado.innerHTML = `A data final do estoque será: <strong>${data.toLocaleDateString('pt-BR')}</strong>`;
+            const dataSinalizacao = new Date(data);
+            dataSinalizacao.setDate(data.getDate() - 45);
+            
+            resultado.innerHTML = `A data final do estoque será: <strong>${data.toLocaleDateString('pt-BR')}</strong><br><br>
+                                  <span class="sinalizacao">O paciente deve ser sinalizado no dia: <strong>${dataSinalizacao.toLocaleDateString('pt-BR')}</strong></span>`;
         }
     </script>
 </body>
